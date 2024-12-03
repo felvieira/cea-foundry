@@ -13,6 +13,7 @@ import { AutomaticApprovalView } from './views/AutomaticApprovalView';
 import { SourcingAppView } from './views/SourcingAppView';
 import { AsManagementView } from './views/AsManagementView';
 import { useStore } from './store/useStore';
+import { cn } from './lib/utils';
 
 const filterCategories = [
   {
@@ -88,12 +89,10 @@ function App() {
         ) : (
           <Filters />
         )}
-        <div 
-          className={`flex-1 transition-all duration-300 p-6`}
-          style={{
-            marginLeft: `${isFiltersOpen ? (isSidebarOpen ? '32rem' : '20rem') : (isSidebarOpen ? '16rem' : '4rem')}`
-          }}
-        >
+        <div className={cn(
+          "flex-1 p-6 transition-all duration-300",
+          isFiltersOpen ? "ml-64" : "ml-0"
+        )}>
           {currentModule === 'admin-planning' && <Navigation />}
           {renderView()}
         </div>

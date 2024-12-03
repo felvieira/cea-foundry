@@ -21,52 +21,55 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   ];
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#1a1f2b] text-white' : 'bg-gray-50 text-gray-900'}`}>
-      {/* Main Sidebar */}
-      <div 
-        className={`fixed left-0 top-0 h-full z-30 transition-all duration-300 ${
-          isSidebarOpen ? 'w-64' : 'w-16'
-        } ${theme === 'dark' ? 'bg-[#0f1319]' : 'bg-white'} border-r border-gray-800`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-800">
-          <div className="flex items-center space-x-3">
-            <Menu className="w-6 h-6 cursor-pointer" onClick={toggleSidebar} />
-            {isSidebarOpen && <span className="text-sm font-medium">Menu</span>}
-          </div>
+    <div className="min-h-screen bg-[var(--background)]" data-theme={theme}>
+      {/* Top Navigation */}
+      <div className="fixed top-0 right-0 left-0 h-14 bg-[var(--surface)] border-b border-[var(--border)] z-40 px-4">
+        <div className="flex items-center h-full">
+          <Menu 
+            className="w-6 h-6 text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text)] transition-colors" 
+            onClick={toggleSidebar}
+          />
+          <span className="ml-4 text-sm font-medium text-[var(--text)]">
+            {modules.find(m => m.id === currentModule)?.label || 'Dashboard'}
+          </span>
         </div>
-        
-        <div className="flex flex-col py-4">
+      </div>
+
+      {/* Sidebar */}
+      <div 
+        className={`fixed left-0 top-14 h-[calc(100vh-3.5rem)] z-30 transition-all duration-300 
+                   ${isSidebarOpen ? 'w-64' : 'w-16'} bg-[var(--surface)] border-r border-[var(--border)]`}
+      >
+        <div className="flex flex-col p-3 space-y-1">
           {modules.map(({ id, label, icon: Icon }) => (
-            <div
+            <button
               key={id}
               onClick={() => setCurrentModule(id)}
-              className={`flex items-center px-4 py-2 cursor-pointer ${
-                currentModule === id 
-                  ? 'bg-blue-600/20 text-blue-400' 
-                  : 'hover:bg-gray-800'
-              }`}
+              className={`sidebar-item ${currentModule === id ? 'active' : ''}`}
             >
-              <Icon className="w-6 h-6" />
+              <Icon className={`icon ${!isSidebarOpen ? 'mx-auto' : ''}`} />
               {isSidebarOpen && <span className="ml-3 text-sm">{label}</span>}
-            </div>
+            </button>
           ))}
           
           <div className="flex-grow" />
           
-          <div className="px-4 py-2 cursor-pointer hover:bg-gray-800 flex items-center">
-            <Settings className="w-6 h-6" />
+          <button className="sidebar-item">
+            <Settings className={`icon ${!isSidebarOpen ? 'mx-auto' : ''}`} />
             {isSidebarOpen && <span className="ml-3 text-sm">Settings</span>}
-          </div>
-          <div className="px-4 py-2 cursor-pointer hover:bg-gray-800 flex items-center">
-            <HelpCircle className="w-6 h-6" />
+          </button>
+          <button className="sidebar-item">
+            <HelpCircle className={`icon ${!isSidebarOpen ? 'mx-auto' : ''}`} />
             {isSidebarOpen && <span className="ml-3 text-sm">Help</span>}
-          </div>
+          </button>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className={`transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-16'}`}>
-        {children}
+      <div className={`pt-14 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-16'}`}>
+        <div className="p-6">
+          {children}
+        </div>
       </div>
     </div>
   );

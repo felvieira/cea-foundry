@@ -31,22 +31,45 @@ const mockData = [
 
 export const ApprovalsView: React.FC = () => {
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-semibold">Admin Planning Application</h1>
-        <div className="space-x-2">
-          <button className="px-4 py-2 bg-green-600 text-white rounded">
-            Aprovar Cadastro
+    <div className="flex h-screen">
+      <aside className="w-64 border-r border-border bg-background">
+        <div className="p-4 space-y-4">
+          <div className="space-y-2">
+            <h3 className="text-sm font-medium">DIVISÃO</h3>
+            <input 
+              type="text" 
+              className="w-full h-9 px-3 rounded-md border border-input bg-background"
+              placeholder="Search..."
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <h3 className="text-sm font-medium">TIME</h3>
+            <input 
+              type="text" 
+              className="w-full h-9 px-3 rounded-md border border-input bg-background"
+              placeholder="Search..."
+            />
+          </div>
+          
+          {/* ... outros filtros ... */}
+        </div>
+      </aside>
+
+      <main className="flex-1 overflow-auto p-6">
+        <div className="flex gap-2 mb-4">
+          <button className="button button-primary">
+            Aprovar
           </button>
-          <button className="px-4 py-2 bg-orange-600 text-white rounded">
-            Aprovar Projeção
-          </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded">
-            Refresh
+          <button className="button button-destructive">
+            Rejeitar
           </button>
         </div>
-      </div>
-      <DataTable data={mockData} columns={columns} />
+        
+        <div className="rounded-md border">
+          <DataTable data={mockData} columns={columns} />
+        </div>
+      </main>
     </div>
   );
 };

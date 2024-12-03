@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStore } from '../store/useStore';
 import { TabId } from '../types';
+import { cn } from '../lib/utils';
 
 export const Navigation: React.FC = () => {
   const currentTab = useStore((state) => state.currentTab);
@@ -15,16 +16,22 @@ export const Navigation: React.FC = () => {
   ];
 
   return (
-    <nav className="flex space-x-4 border-b border-gray-700 mb-4">
+    <nav className="flex w-full border-b">
       {tabs.map(({ id, label }) => (
         <button
           key={id}
           onClick={() => setCurrentTab(id)}
-          className={`px-4 py-2 text-sm hover:text-blue-400 focus:outline-none ${
-            currentTab === id ? 'text-blue-400 border-b-2 border-blue-400' : ''
-          }`}
+          className={cn(
+            "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative h-10 w-full",
+            currentTab === id
+              ? "text-primary-foreground bg-primary"
+              : "text-muted-foreground hover:text-primary hover:bg-muted"
+          )}
         >
           {label}
+          {currentTab === id && (
+            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+          )}
         </button>
       ))}
     </nav>

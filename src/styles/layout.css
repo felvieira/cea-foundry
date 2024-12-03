@@ -1,0 +1,18 @@
+.layout-container {
+  display: flex;
+  width: 100%;
+}
+
+.filters-sidebar {
+  width: 250px;
+  min-width: 250px;
+  background-color: #1a1a1a;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.content-area {
+  flex: 1;
+  padding: 1rem;
+  overflow-x: auto;
+} 

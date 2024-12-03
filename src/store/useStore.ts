@@ -16,7 +16,10 @@ interface Store {
 
 export const useStore = create<Store>((set) => ({
   theme: 'dark',
-  setTheme: (theme) => set({ theme }),
+  setTheme: (theme) => {
+    set({ theme });
+    document.documentElement.setAttribute('data-theme', theme);
+  },
   isSidebarOpen: true,
   toggleSidebar: () => set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
   isFiltersOpen: true,

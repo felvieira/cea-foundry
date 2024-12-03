@@ -22,7 +22,7 @@ export const Filters: React.FC = () => {
 
   return (
     <div 
-      className={`fixed top-0 h-full z-20 transition-all duration-300 ${
+      className={`fixed top-14 h-[calc(100vh-3.5rem)] z-20 transition-all duration-300 ${
         isFiltersOpen ? 'w-64' : 'w-0'
       } ${theme === 'dark' ? 'bg-[#0f1319]' : 'bg-white'} border-r border-gray-800`}
       style={{ left: isSidebarOpen ? '16rem' : '4rem' }}
@@ -40,7 +40,7 @@ export const Filters: React.FC = () => {
         </button>
       </div>
       {isFiltersOpen && (
-        <div className="p-4 space-y-4 overflow-y-auto h-[calc(100vh-64px)]">
+        <div className="p-4 space-y-4 overflow-y-auto h-[calc(100vh-8.5rem)]">
           {filters.map((filter) => (
             <div key={filter.label} className="space-y-1">
               <label className="text-xs text-gray-400">{filter.label}</label>
