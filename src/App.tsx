@@ -10,7 +10,6 @@ import { ParametersView } from '@/pages/admin-planning/features/parameters/views
 import { ProjectionChangeView } from '@/pages/admin-planning/features/projection/views/ProjectionChangeView';
 import { ProductRegistrationView } from '@/pages/admin-planning/features/registration/views/ProductRegistrationView';
 import { AutomaticApprovalView } from '@/pages/admin-planning/features/approvals/views/AutomaticApprovalView';
-import { AsManagementView } from '@/pages/as-management/features/management/views/AsManagementView';
 import { SourcingAppView } from '@/pages/sourcing/features/app/SourcingAppView';
 import { AppCadastroView } from '@/pages/as-management/features/app-cadastro/views/AppCadastroView';
 
@@ -48,7 +47,7 @@ function App() {
             return <ParametersView />;
         }
       default:
-        return <AsManagementView />;
+        return <AppCadastroView />;
     }
   };
 
