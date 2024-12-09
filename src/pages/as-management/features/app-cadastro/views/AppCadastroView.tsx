@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { DataTable } from '../../../../components/common/DataTable';
-import { useStore } from '../../../../hooks/useStore';
+import { DataTable } from '@/components/common/DataTable';
+import { useStore } from '@/hooks/useStore';
 import { ChevronDown, ChevronUp, Package, Clock, Settings, History, Edit2 } from 'lucide-react';
+import { CardFilters } from '@/components/filters/CardFilters';
 
 const mockPrograms = [
   {
@@ -82,8 +83,40 @@ const sections = [
   { id: 'opcoes', label: 'Opções', icon: Settings, color: 'purple' },
   { id: 'timeline-lojas', label: 'Timeline - Grupo de Lojas', icon: History, color: 'orange' }
 ];
+const filterSections = [
+    {
+      title: 'DIVISÃO',
+      items: [
+        { name: 'BELEZA', count: 1299 },
+        { name: 'FEMININO', count: 657 },
+        { name: 'MASCULINO', count: 434 },
+        { name: 'KIDS', count: 380 },
+        { name: 'ACE', count: 202 }
+      ]
+    },
+    {
+      title: 'DEPARTAMENTO',
+      items: [
+        { name: 'BELEZA', count: 1299 },
+        { name: 'BASICOS ELA', count: 304 },
+        { name: 'JEANS ELE', count: 178 },
+        { name: 'JEANS ELA', count: 149 },
+        { name: 'LINGERIE', count: 134 }
+      ]
+    },
+    {
+      title: 'COMMODITY',
+      items: [
+        { name: 'TOP MALHA', count: 778 },
+        { name: 'MAKE E UNHAS', count: 552 },
+        { name: 'FRAGRANCIAS PRES...', count: 366 },
+        { name: 'FRAGRANCIAS MASS...', count: 244 },
+        { name: 'BOTTOM LONGO JE...', count: 178 }
+      ]
+    }
+  ];
 
-export const AsManagementView: React.FC = () => {
+export const AppCadastroView: React.FC = () => {
   const theme = useStore((state) => state.theme);
   const [expandedSections, setExpandedSections] = useState<string[]>(['programa']);
 
@@ -237,6 +270,8 @@ export const AsManagementView: React.FC = () => {
   };
 
   return (
+    <>
+    <CardFilters sections={filterSections} />
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-4">
@@ -284,5 +319,6 @@ export const AsManagementView: React.FC = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };

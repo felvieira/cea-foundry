@@ -34,15 +34,20 @@ export function DataTable<T>({ data, columns }: DataTableProps<T>) {
         <table className="w-full">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                <th className="w-10 table-header">
-                  <input type="checkbox" className="rounded border-gray-600" />
+              <tr key={headerGroup.id} className="border-b border-[var(--border)]">
+                <th className="w-10 p-4">
+                  <div className="flex items-center justify-center w-5 h-5">
+                    <input 
+                      type="checkbox" 
+                      className="w-4 h-4 rounded border-[var(--border)] accent-blue-500"
+                    />
+                  </div>
                 </th>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
                     onClick={header.column.getToggleSortingHandler()}
-                    className="table-header cursor-pointer select-none"
+                    className="p-4 text-left text-sm font-medium text-[var(--text-secondary)] cursor-pointer"
                   >
                     <div className="flex items-center space-x-2">
                       <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
@@ -64,13 +69,18 @@ export function DataTable<T>({ data, columns }: DataTableProps<T>) {
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
-                className="hover:bg-[var(--border)]/10 transition-colors"
+                className="border-b border-[var(--border)] hover:bg-[var(--border)]/10 transition-colors"
               >
-                <td className="w-10 table-cell">
-                  <input type="checkbox" className="rounded border-gray-600" />
+                <td className="p-4">
+                  <div className="flex items-center justify-center w-5 h-5">
+                    <input 
+                      type="checkbox" 
+                      className="w-4 h-4 rounded border-[var(--border)] accent-blue-500"
+                    />
+                  </div>
                 </td>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="table-cell">
+                  <td key={cell.id} className="p-4 text-sm">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

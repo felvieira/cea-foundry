@@ -5,7 +5,6 @@ import { useStore } from '@/hooks/useStore';
 export const AdminFilters: React.FC = () => {
   const isFiltersOpen = useStore((state) => state.isFiltersOpen);
   const toggleFilters = useStore((state) => state.toggleFilters);
-  const theme = useStore((state) => state.theme);
   const isSidebarOpen = useStore((state) => state.isSidebarOpen);
 
   const filters = [
@@ -23,7 +22,7 @@ export const AdminFilters: React.FC = () => {
   return (
     <div 
       className={`fixed top-14 h-[calc(100vh-3.5rem)] z-20 transition-all duration-300 ${
-        isFiltersOpen ? 'w-64' : 'w-0'
+        isFiltersOpen ? 'w-80' : 'w-0'
       } bg-[var(--surface)] border-r border-[var(--border)]`}
       style={{ left: isSidebarOpen ? '16rem' : '4rem' }}
     >

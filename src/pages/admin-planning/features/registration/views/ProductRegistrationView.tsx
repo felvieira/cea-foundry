@@ -1,6 +1,7 @@
 import React from 'react';
 import { DataTable } from "@/components/common/DataTable";
 import { useStore } from "@/hooks/useStore";
+import { CardFilters } from '@/components/filters/CardFilters';
 
 const mockData = [
   {
@@ -129,22 +130,58 @@ const columns = [
 ];
 
 export const ProductRegistrationView: React.FC = () => {
+  const filterSections = [
+    {
+      title: 'DEPARTAMENTO',
+      items: [
+        { name: 'BELEZA', count: 494 },
+        { name: 'CALCADOS ELA', count: 39 },
+        { name: 'CALCADOS KIDS', count: 39 },
+        { name: 'UNDERWEAR', count: 34 },
+        { name: 'JEANS ELA', count: 32 }
+      ]
+    },
+    {
+      title: 'COMMODITY',
+      items: [
+        { name: 'MAKE E UNHAS', count: 207 },
+        { name: 'FRAGRANCIAS PRES...', count: 154 },
+        { name: 'TOP MALHA', count: 107 },
+        { name: 'FRAGRANCIAS MASSIVO', count: 89 },
+        { name: 'TENIS', count: 65 }
+      ]
+    },
+    {
+      title: 'PROGRAMA',
+      items: [
+        { name: 'AB - GOLDEN SECRET', count: 1 },
+        { name: 'AB - HER GOLDEN SEC...', count: 1 },
+        { name: 'AB - HER SECRET DESIRE', count: 1 },
+        { name: 'AB - HER SECRET TEM...', count: 1 },
+        { name: 'AB - KING OF SEDUCTI...', count: 1 }
+      ]
+    }
+  ];
+
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center mb-4">
-        <div className="space-x-2">
-          <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-            Aprovar Cadastro
-          </button>
-          <button className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">
-            Aprovar Projeção
+    <>
+      <CardFilters sections={filterSections} />
+      <div className="space-y-4">
+        <div className="flex justify-between items-center mb-4">
+          <div className="space-x-2">
+            <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+              Aprovar Cadastro
+            </button>
+            <button className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">
+              Aprovar Projeção
+            </button>
+          </div>
+          <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Refresh
           </button>
         </div>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-          Refresh
-        </button>
+        <DataTable data={mockData} columns={columns} />
       </div>
-      <DataTable data={mockData} columns={columns} />
-    </div>
+    </>
   );
 };

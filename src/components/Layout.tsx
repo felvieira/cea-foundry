@@ -15,10 +15,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const setCurrentModule = useStore((state) => state.setCurrentModule);
 
   const modules: { id: Module; label: string; icon: React.FC<any> }[] = [
-    { id: 'admin-planning', label: 'Admin Planning', icon: LayoutGrid },
-    { id: 'as-management', label: 'App de Cadastro', icon: ShoppingBag },
-    { id: 'sourcing-app', label: 'Sourcing APP', icon: Box },
-    { id: 'smart-buy', label: 'Smart Buy', icon: Brain },
+    { id: 'admin-planning', label: 'APP Admin Planning', icon: LayoutGrid },
+    { id: 'as-management', label: 'APP de Cadastro', icon: ShoppingBag },
+    { id: 'smart-buy', label: 'APP Smart Buy', icon: Brain },
+    { id: 'sourcing-app', label: 'APP Sourcing', icon: Box },
   ];
 
   return (

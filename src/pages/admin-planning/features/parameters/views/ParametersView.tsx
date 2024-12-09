@@ -25,18 +25,6 @@ const columns = [
   { header: 'Display Layer', accessorKey: 'displayLayer' }
 ];
 
-const mockChartData = [
-  { name: '0.1', value: 10 },
-  { name: '0.2', value: 20 },
-  { name: '0.3', value: 30 },
-  { name: '0.4', value: 45 },
-  { name: '0.5', value: 60 },
-  { name: '0.6', value: 75 },
-  { name: '0.7', value: 85 },
-  { name: '0.8', value: 70 },
-  { name: '0.9', value: 55 },
-];
-
 const flexBuyOptions = [2, 5, 8, 12];
 
 export const ParametersView: React.FC = () => {
@@ -46,39 +34,54 @@ export const ParametersView: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
 
+  // Dados para o gráfico
+  const chartData = [
+    { name: '0.1', value: 10 },
+    { name: '0.2', value: 20 },
+    { name: '0.3', value: 30 },
+    { name: '0.4', value: 45 },
+    { name: '0.5', value: 60 },
+    { name: '0.6', value: 75 },
+    { name: '0.7', value: 85 },
+    { name: '0.8', value: 70 },
+    { name: '0.9', value: 55 },
+  ];
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-start">
-        <div className="w-64 space-y-4">
-          <h3 className="text-sm font-medium">SIMILAR GROUP NAME</h3>
-          <div className="space-y-2">
-            {Array.from({ length: 5 }, (_, i) => (
-              <div key={i} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id={`group-${i}`}
-                  className="rounded border-gray-400"
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setSelectedGroups([...selectedGroups, `group-${i}`]);
-                    } else {
-                      setSelectedGroups(selectedGroups.filter(g => g !== `group-${i}`));
-                    }
-                  }}
-                />
-                <label htmlFor={`group-${i}`} className="text-sm">
-                  TOP EPP | BASICOS ELA - {i + 1}
-                </label>
-                <div className="flex-grow h-1 bg-blue-400 rounded" />
-              </div>
-            ))}
-            <button className="text-sm text-gray-400 hover:text-gray-300">
-              Show more
-            </button>
+        {/* Coluna da esquerda com os cards */}
+        <div className="w-80 space-y-6">
+          {/* Similar Group Name Card */}
+          <div className="bg-[var(--surface)] p-4 rounded-lg border border-[var(--border)]">
+            <h3 className="text-sm font-medium mb-4">SIMILAR GROUP NAME</h3>
+            <div className="space-y-2">
+              {Array.from({ length: 5 }, (_, i) => (
+                <div key={i} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    className="rounded border-[var(--border)]"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setSelectedGroups([...selectedGroups, `TOP EPP | BASICOS ELA - ${i + 1}`]);
+                      } else {
+                        setSelectedGroups(selectedGroups.filter(g => g !== `TOP EPP | BASICOS ELA - ${i + 1}`));
+                      }
+                    }}
+                  />
+                  <span className="text-sm flex-1">TOP EPP | BASICOS ELA - {i + 1}</span>
+                  <div className="h-1 w-24 bg-blue-400 rounded" />
+                </div>
+              ))}
+              <button className="text-sm text-[var(--text-secondary)] hover:text-[var(--text)]">
+                Show more
+              </button>
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium">IDEAL SALES PROJECTION SAFETY</h3>
+          {/* Ideal Sales Projection Safety Card */}
+          <div className="bg-[var(--surface)] p-4 rounded-lg border border-[var(--border)]">
+            <h3 className="text-sm font-medium mb-4">IDEAL SALES PROJECTION SAFETY</h3>
             <div className="flex items-center space-x-2">
               <span className="text-sm">8</span>
               <div className="flex-grow h-1 bg-blue-400 rounded" />
@@ -86,12 +89,16 @@ export const ParametersView: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium">FLEX BUY WEEKS</h3>
-            <Chart data={mockChartData} />
+          {/* Flex Buy Weeks Card */}
+          <div className="bg-[var(--surface)] p-4 rounded-lg border border-[var(--border)]">
+            <h3 className="text-sm font-medium mb-4">FLEX BUY WEEKS</h3>
+            <div className="h-32">
+              <Chart data={chartData} />
+            </div>
           </div>
         </div>
 
+        {/* Coluna da direita com a tabela */}
         <div className="flex-1 ml-6">
           <div className="flex justify-between items-center mb-4">
             <div className="space-x-2">
@@ -113,6 +120,7 @@ export const ParametersView: React.FC = () => {
         </div>
       </div>
 
+      {/* Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
