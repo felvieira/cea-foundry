@@ -1,49 +1,32 @@
 import React, { useState } from 'react';
-import { useStore } from '../store/useStore';
+import { DataTable } from '@/components/common/DataTable';
+import { useStore } from '@/hooks/useStore';
+import { Package } from 'lucide-react';
 
-const mockData = [
+interface ProjectionItem {
+  id: string;
+  name: string;
+  lastUpdate: string;
+  user: string;
+  purchaseGroup: string;
+}
+
+const mockData: ProjectionItem[] = [
   {
     id: 'AB-001',
     name: 'AB - GOLDEN SECRET | BELEZA - OPAG-001 - 200ML',
     lastUpdate: '3 de out. de 2024, 09:25',
     user: 'Thalita Do Bem Mattos',
-    purchaseGroup: '',
+    purchaseGroup: ''
   },
   {
     id: 'AB-002',
     name: 'AB - GOLDEN SECRET | BELEZA - OPAG-002 - 150ML',
     lastUpdate: '10 de jul. de 2024, 09:44',
     user: 'Diego Alves Verdan',
-    purchaseGroup: '',
+    purchaseGroup: ''
   },
-  {
-    id: 'AB-003',
-    name: 'AB - GOLDEN SECRET | BELEZA - OPAG-003 - 100ML',
-    lastUpdate: '10 de jul. de 2024, 09:44',
-    user: 'Diego Alves Verdan',
-    purchaseGroup: '',
-  },
-  {
-    id: 'AB-004',
-    name: 'AB - GOLDEN SECRET | BELEZA - OPAG-004 - 50ML',
-    lastUpdate: '10 de jul. de 2024, 09:44',
-    user: 'Diego Alves Verdan',
-    purchaseGroup: '',
-  },
-  {
-    id: 'AB-005',
-    name: 'AB - GOLDEN SECRET | BELEZA - OPAG-005 - 30ML',
-    lastUpdate: '10 de jul. de 2024, 09:44',
-    user: 'Diego Alves Verdan',
-    purchaseGroup: '',
-  },
-  {
-    id: 'AB-006',
-    name: 'AB - HER GOLDEN SECRET | BELEZA - OPAG-001 - 50ML',
-    lastUpdate: '10 de jul. de 2024, 09:44',
-    user: 'Diego Alves Verdan',
-    purchaseGroup: '',
-  }
+  // ... outros itens
 ];
 
 export const ProjectionChangeView: React.FC = () => {
@@ -99,8 +82,8 @@ export const ProjectionChangeView: React.FC = () => {
                 <input type="checkbox" className="mt-1.5" />
                 <div>
                   <div className="flex items-center space-x-2">
-                    <div className="bg-orange-500 text-white text-xs px-1.5 py-0.5 rounded">IR</div>
-                    <span className="text-sm">{item.name}</span>
+                    <Package className="w-4 h-4 text-orange-400" />
+                    <h3 className="font-medium">{item.name}</h3>
                   </div>
                   <div className="mt-1 text-sm text-gray-400">
                     <p>Último Update: {item.lastUpdate}</p>
@@ -115,4 +98,4 @@ export const ProjectionChangeView: React.FC = () => {
       </div>
     </div>
   );
-};
+}; 

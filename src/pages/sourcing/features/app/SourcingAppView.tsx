@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { DataTable } from '../components/DataTable';
+import { DataTable } from '@/components/common/DataTable';
+import { Modal } from '@/components/common/Modal';
+import { useStore } from '@/hooks/useStore';
 import { Calendar, DollarSign, Truck, RefreshCw, ChevronDown, X, Download } from 'lucide-react';
-import { Modal } from '../components/Modal';
 
 const mockOpenData = [
   {

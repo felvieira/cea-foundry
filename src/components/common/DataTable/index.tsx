@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -7,6 +7,7 @@ import {
   SortingState,
 } from '@tanstack/react-table';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface DataTableProps<T> {
   data: T[];
@@ -14,7 +15,7 @@ interface DataTableProps<T> {
 }
 
 export function DataTable<T>({ data, columns }: DataTableProps<T>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   
   const table = useReactTable({
     data,
@@ -63,7 +64,7 @@ export function DataTable<T>({ data, columns }: DataTableProps<T>) {
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
-                className="hover:bg-gray-800/50 transition-colors"
+                className="hover:bg-[var(--border)]/10 transition-colors"
               >
                 <td className="w-10 table-cell">
                   <input type="checkbox" className="rounded border-gray-600" />

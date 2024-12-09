@@ -1,6 +1,6 @@
 import React from 'react';
-import { DataTable } from '../components/DataTable';
-import { useStore } from '../store/useStore';
+import { DataTable } from "@/components/common/DataTable";
+import { useStore } from "@/hooks/useStore";
 
 const mockData = [
   {

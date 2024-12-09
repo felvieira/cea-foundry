@@ -1,6 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { useStore } from '../../../hooks/useStore';
 
 interface ModalProps {
   isOpen: boolean;

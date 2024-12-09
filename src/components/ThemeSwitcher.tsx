@@ -1,6 +1,6 @@
 import React from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { useStore } from '../hooks/useStore';
 
 export const ThemeSwitcher: React.FC = () => {
   const theme = useStore((state) => state.theme);

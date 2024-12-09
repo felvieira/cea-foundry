@@ -1,6 +1,7 @@
-import React from 'react';
-import { DataTable } from '../components/DataTable';
-import { mockOrders } from '../mockData';
+import React, { useState } from 'react';
+import { DataTable } from "@/components/common/DataTable";
+import { useStore } from "@/hooks/useStore";
+import { mockOrders } from "@/mockData";
 
 const columns = [
   { header: 'Timestamp', accessorKey: 'timestamp' },

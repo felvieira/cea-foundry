@@ -1,6 +1,6 @@
 import React from 'react';
 import { Filter, ChevronRight } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { useStore } from '../../../hooks/useStore';
 
 export const Filters: React.FC = () => {
   const isFiltersOpen = useStore((state) => state.isFiltersOpen);

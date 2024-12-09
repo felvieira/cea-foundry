@@ -1,6 +1,6 @@
 export type Theme = 'light' | 'dark';
 
-export type Module = 'admin-planning' | 'as-management' | 'sourcing-app';
+export type Module = 'sourcing-app' | 'as-management' | 'admin-planning' | 'smart-buy';
 
 export type TabId = 'orders' | 'parameters' | 'projection' | 'registration' | 'approvals';
 
@@ -54,4 +54,17 @@ export interface AutomaticApproval {
   operation: string;
   strategy: string;
   untilWeek: string;
+}
+
+export interface Store {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+  isFiltersOpen: boolean;
+  toggleFilters: () => void;
+  currentModule: Module;
+  setCurrentModule: (module: Module) => void;
+  currentTab: TabId;
+  setCurrentTab: (tab: TabId) => void;
 }

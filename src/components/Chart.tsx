@@ -1,6 +1,6 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { useStore } from '../store/useStore';
+import { useStore } from '../hooks/useStore';
 
 interface ChartProps {
   data: any[];

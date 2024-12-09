@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { DataTable } from '../components/DataTable';
-import { Chart } from '../components/Chart';
-import { Modal } from '../components/Modal';
+import { DataTable } from '@/components/common/DataTable';
+import { Modal } from '@/components/common/Modal';
+import { Chart } from '@/components/common/Chart';
+import { useStore } from '@/hooks/useStore';
 import { Search, X } from 'lucide-react';
-import { Parameter } from '../types';
+import type { Parameter } from '@/types';
 
 const mockParameters: Parameter[] = Array.from({ length: 15 }, (_, i) => ({
   id: `${i + 1}`,

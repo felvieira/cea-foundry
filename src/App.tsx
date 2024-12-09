@@ -1,19 +1,21 @@
 import React from 'react';
 import { Layout } from './components/Layout';
 import { Navigation } from './components/Navigation';
-import { Filters } from './components/Filters';
-import { AsFilters } from './components/AsFilters';
+import { AdminFilters } from '@/components/filters/AdminFilters';
+import { AsFilters } from '@/components/filters/AsFilters';
 import { ThemeSwitcher } from './components/ThemeSwitcher';
-import { ApprovalsView } from './views/ApprovalsView';
-import { ParametersView } from './views/ParametersView';
-import { ProductRegistrationView } from './views/ProductRegistrationView';
-import { OrdersView } from './views/OrdersView';
-import { ProjectionChangeView } from './views/ProjectionChangeView';
-import { AutomaticApprovalView } from './views/AutomaticApprovalView';
-import { SourcingAppView } from './views/SourcingAppView';
-import { AsManagementView } from './views/AsManagementView';
-import { useStore } from './store/useStore';
-import { cn } from './lib/utils';
+
+// Features imports
+import { OrdersView } from '@/pages/admin-planning/features/orders/views/OrdersView';
+import { ParametersView } from '@/pages/admin-planning/features/parameters/views/ParametersView';
+import { ProjectionChangeView } from '@/pages/admin-planning/features/projection/views/ProjectionChangeView';
+import { ProductRegistrationView } from '@/pages/admin-planning/features/registration/views/ProductRegistrationView';
+import { AutomaticApprovalView } from '@/pages/admin-planning/features/approvals/views/AutomaticApprovalView';
+import { AsManagementView } from '@/pages/as-management/features/management/views/AsManagementView';
+import { SourcingAppView } from '@/pages/sourcing/features/app/SourcingAppView';
+
+import { useStore } from '@/hooks/useStore';
+import { cn } from '@/lib/utils';
 
 const filterCategories = [
   {
@@ -73,7 +75,7 @@ function App() {
           case 'approvals':
             return <AutomaticApprovalView />;
           default:
-            return <ProductRegistrationView />;
+            return <ParametersView />;
         }
       default:
         return <AsManagementView />;
@@ -87,7 +89,7 @@ function App() {
         {currentModule === 'as-management' ? (
           <AsFilters categories={filterCategories} />
         ) : (
-          <Filters />
+          <AdminFilters />
         )}
         <div className={cn(
           "flex-1 p-6 transition-all duration-300",

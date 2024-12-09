@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { DataTable } from '../components/DataTable';
-import { useStore } from '../store/useStore';
+import { DataTable } from '../../../../components/common/DataTable';
+import { useStore } from '../../../../hooks/useStore';
 import { ChevronDown, ChevronUp, Package, Clock, Settings, History, Edit2 } from 'lucide-react';
 
 const mockPrograms = [

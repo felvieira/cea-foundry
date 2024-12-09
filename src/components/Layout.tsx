@@ -1,6 +1,6 @@
 import React from 'react';
-import { Menu, LayoutGrid, ShoppingBag, Box, Settings, HelpCircle } from 'lucide-react';
-import { useStore } from '../store/useStore';
+import { Menu, LayoutGrid, ShoppingBag, Box, Settings, HelpCircle, Brain } from 'lucide-react';
+import { useStore } from '@/hooks/useStore';
 import { Module } from '../types';
 
 interface LayoutProps {
@@ -16,8 +16,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const modules: { id: Module; label: string; icon: React.FC<any> }[] = [
     { id: 'admin-planning', label: 'Admin Planning', icon: LayoutGrid },
-    { id: 'as-management', label: 'Gestão de AS', icon: ShoppingBag },
+    { id: 'as-management', label: 'App de Cadastro', icon: ShoppingBag },
     { id: 'sourcing-app', label: 'Sourcing APP', icon: Box },
+    { id: 'smart-buy', label: 'Smart Buy', icon: Brain },
   ];
 
   return (
@@ -45,21 +46,24 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <button
               key={id}
               onClick={() => setCurrentModule(id)}
-              className={`sidebar-item ${currentModule === id ? 'active' : ''}`}
+              className={`flex items-center px-3 py-2.5 rounded-lg transition-colors
+                ${currentModule === id 
+                  ? 'bg-emerald-500/10 text-emerald-400' 
+                  : 'text-[var(--text-secondary)] hover:bg-[var(--border)]/50'}`}
             >
-              <Icon className={`icon ${!isSidebarOpen ? 'mx-auto' : ''}`} />
+              <Icon className={`w-6 h-6 flex-shrink-0 ${!isSidebarOpen ? 'mx-auto' : ''}`} />
               {isSidebarOpen && <span className="ml-3 text-sm">{label}</span>}
             </button>
           ))}
           
           <div className="flex-grow" />
           
-          <button className="sidebar-item">
-            <Settings className={`icon ${!isSidebarOpen ? 'mx-auto' : ''}`} />
+          <button className="flex items-center px-3 py-2.5 text-[var(--text-secondary)] hover:bg-[var(--border)]/50 rounded-lg transition-colors">
+            <Settings className={`w-6 h-6 flex-shrink-0 ${!isSidebarOpen ? 'mx-auto' : ''}`} />
             {isSidebarOpen && <span className="ml-3 text-sm">Settings</span>}
           </button>
-          <button className="sidebar-item">
-            <HelpCircle className={`icon ${!isSidebarOpen ? 'mx-auto' : ''}`} />
+          <button className="flex items-center px-3 py-2.5 text-[var(--text-secondary)] hover:bg-[var(--border)]/50 rounded-lg transition-colors">
+            <HelpCircle className={`w-6 h-6 flex-shrink-0 ${!isSidebarOpen ? 'mx-auto' : ''}`} />
             {isSidebarOpen && <span className="ml-3 text-sm">Help</span>}
           </button>
         </div>
